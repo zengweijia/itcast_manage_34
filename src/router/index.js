@@ -5,6 +5,8 @@ import Login from '@/views/login.vue'
 import Home from '@/views/home.vue'
 import Welcome from '@/views/welcome.vue'
 import Users from '@/views/users/user.vue'
+import Role from '@/views/right/role.vue'
+import Right from '@/views/right/right.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -35,6 +37,16 @@ const router = new VueRouter({
           name: 'users',
           path: 'users',
           component: Users
+        },
+        {
+          name: 'role',
+          path: 'role',
+          component: Role
+        },
+        {
+          name: 'right',
+          path: 'right',
+          component: Right
         }
       ]
     }
@@ -44,7 +56,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   var token = localStorage.getItem('itcast_manage_34_token')
-  console.log('to', to)
+  // console.log('to', to)
   if (token || to.path === '/login') {
     next()
   } else {
