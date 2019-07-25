@@ -3,9 +3,12 @@ import VueRouter from 'vue-router'
 
 import Login from '@/views/login.vue'
 import Home from '@/views/home.vue'
+import Welcome from '@/views/welcome.vue'
+import Users from '@/views/users/user.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
+
   routes: [
     {
       name: 'login',
@@ -20,9 +23,33 @@ const router = new VueRouter({
     {
       name: 'home',
       path: '/home',
-      component: Home
+      component: Home,
+      redirect: { name: 'welcome' },
+      children: [
+        {
+          name: 'welcome',
+          path: 'welcome',
+          component: Welcome
+        },
+        {
+          name: 'users',
+          path: 'users',
+          component: Users
+        }
+      ]
     }
+
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  var token = localStorage.getItem('itcast_manage_34_token')
+  console.log('to', to)
+  if (token || to.path === '/login') {
+    next()
+  } else {
+    next({ name: 'login' })
+  }
 })
 
 export default router

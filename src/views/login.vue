@@ -26,8 +26,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       rules: {
         username: [
@@ -47,7 +47,9 @@ export default {
           login(this.loginForm)
             .then(res => {
               if (res.data.meta.status === 200) {
+                console.log(res)
                 this.$router.push({ name: 'home' })
+                localStorage.setItem('itcast_manage_34_token', res.data.data.token)
               } else {
                 this.$message({
                   message: res.data.meta.msg,
