@@ -6,7 +6,7 @@ export const getAllRolelist = () => {
     url: 'roles'
   })
 }
-//分配用户角色
+// 分配用户角色
 export const grantUserRole = (data) => {
   return axios({
     url: `users/${data.id}/role`,
@@ -15,11 +15,28 @@ export const grantUserRole = (data) => {
   })
 }
 
-
-//删除角色指定权限
-export const delRightByRoleId = (roleId,rightId) => {
+// 删除角色指定权限
+export const delRightByRoleId = (roleId, rightId) => {
   return axios({
     url: `roles/${roleId}/rights/${rightId}`,
     method: 'delete'
+  })
+}
+
+// 角色管理--授权
+export const grantRightById = (roleId, rids) => {
+  return axios({
+    url: `roles/${roleId}/rights`,
+    method: 'post',
+    data: { rids }
+  })
+}
+
+// 角色管理--添加角色
+export const addRole = (data) => {
+  return axios({
+    url: `roles`,
+    method: 'post',
+    data
   })
 }

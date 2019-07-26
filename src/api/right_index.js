@@ -8,4 +8,9 @@ export const getAllRightlist = (type) => {
   })
 }
 
-
+// 左侧菜单权限
+export const getLeftMenu = () => {
+  return axios({
+    url: `menus`
+  })
+}

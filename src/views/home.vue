@@ -13,29 +13,14 @@
           text-color="#fff"
           active-text-color="#ffd04b"
         >
-          <el-submenu index="1-3">
+          <el-submenu v-for="first in leftmenu" :key="first.id" :index="first.id+''" >
             <template slot="title">
               <i class="el-icon-dish"></i>
-              <span>用户管理</span>
+              <span>{{first.authName}}</span>
             </template>
-            <el-menu-item index="/home/users">
+            <el-menu-item v-for="second in first.children" :key="second.id" :index="'/home/'+second.path">
               <i class="el-icon-dessert"></i>
-              <span>用户列表</span>
-            </el-menu-item>
-          </el-submenu>
-
-          <el-submenu index="1-4">
-            <template slot="title">
-              <i class="el-icon-grape"></i>
-              <span>管理权限</span>
-            </template>
-            <el-menu-item index="/home/role">
-              <i class="el-icon-trophy-1"></i>
-              <span>角色列表</span>
-            </el-menu-item>
-            <el-menu-item index="/home/right">
-              <i class="el-icon-scissors"></i>
-              <span>权限列表</span>
+              <span>{{second.authName}}</span>
             </el-menu-item>
           </el-submenu>
         </el-menu>
@@ -52,7 +37,23 @@
   </div>
 </template>
 <script>
-export default {};
+import { getLeftMenu } from '@/api/right_index.js'
+export default {
+  data () {
+    return {
+      leftmenu: []
+    }
+  },
+  mounted () {
+    getLeftMenu()
+      .then((result) => {
+        console.log(result)
+        this.leftmenu = result.data.data
+      }).catch((err) => {
+        console.log(err)
+      })
+  }
+}
 </script>
 <style lang="less" scoped>
 .home {

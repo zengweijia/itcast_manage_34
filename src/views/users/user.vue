@@ -120,8 +120,7 @@
     </el-dialog>
   </div>
 </template>
-  </div>
-</template>
+
 <script>
 import {
   getAllUserList,
@@ -363,9 +362,9 @@ export default {
             message: '角色设置成功'
 
           })
-          console.log('设置角色',res)
+          console.log('设置角色', res)
           this.grantdialogFormVisible = false
-          this.init()         
+          this.init()
         }
       }
     }

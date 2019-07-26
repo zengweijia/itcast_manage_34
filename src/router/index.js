@@ -40,12 +40,12 @@ const router = new VueRouter({
         },
         {
           name: 'role',
-          path: 'role',
+          path: 'roles',
           component: Role
         },
         {
           name: 'right',
-          path: 'right',
+          path: 'rights',
           component: Right
         }
       ]

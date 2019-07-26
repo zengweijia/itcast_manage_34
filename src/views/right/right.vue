@@ -18,38 +18,38 @@
   </div>
 </template>
 <script>
-import { getAllRightlist } from "@/api/right_index.js";
+import { getAllRightlist } from '@/api/right_index.js'
 export default {
-  data() {
+  data () {
     return {
       tableData: []
-    };
+    }
   },
   methods: {},
   filters: {
-    levels(level) {
-      if (level === "0") {
-        return "一级";
-      } else if (level === "1") {
-        return "二级";
-      } else if (level === "2") {
-        return "三级";
+    levels (level) {
+      if (level === '0') {
+        return '一级'
+      } else if (level === '1') {
+        return '二级'
+      } else if (level === '2') {
+        return '三级'
       } else {
-        return "";
+        return ''
       }
     }
   },
-  mounted() {
-    getAllRightlist("list")
+  mounted () {
+    getAllRightlist('list')
       .then(result => {
-        console.log("所有权限列表", result)
+        console.log('所有权限列表', result)
         this.tableData = result.data.data
       })
       .catch(err => {
-          console.log('失败时的所有权限列表',err);
-      });
+        console.log('失败时的所有权限列表', err)
+      })
   }
-};
+}
 </script>
 <style lang="less" scoped>
 </style>
